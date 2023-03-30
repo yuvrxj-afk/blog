@@ -1,79 +1,20 @@
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import Layout from './pages/layout';
+import IndexPage from './pages/indexPage.js';
+import Login from './pages/login';
+import Register from './pages/register';
 
 function App() {
   return (
-    <main>
-      <header>
-        <a href="" className="logo">Blogs.</a>
-        <nav>
-          <a href="">Login</a>
-          <a href="">Register</a>
-        </nav>
-      </header>
-      <div className="entries">
-        <div className="post">
-          <div className="image">
-            <img src="https://blog.hubbleprotocol.io/content/images/size/w1200/2023/03/How-to-set-up-Backpack-backpack-crypto-wallet-xnft-backpack-backpack-solana-wallet-xnft-solana-wallet-install-backpack-nft-wallet-hubble-protocol.png" alt="" />
-          </div>
-          <div className="content">
-            <h2>How to Set Up xNFT Backpack Solana Wallet</h2>
-            <p className="info">
-              <a href="" className="author">
-                uv
-              </a>
-              <time>2023-03-27 00:12</time>
-            </p>
-            <p className="summary">
-              You need a wallet to interact with decentralized
-              finance (DeFi) protocols on Solana.
-              The multi-chain xNFT Backpack wallet is
-              one of the most user-friendly and advanced Solana wallets available.
-            </p>
-          </div>
-        </div>
-        <div className="post">
-          <div className="image">
-            <img src="https://blog.hubbleprotocol.io/content/images/size/w1200/2023/03/How-to-set-up-Backpack-backpack-crypto-wallet-xnft-backpack-backpack-solana-wallet-xnft-solana-wallet-install-backpack-nft-wallet-hubble-protocol.png" alt="" />
-          </div>
-          <div className="content">
-            <h2>How to Set Up xNFT Backpack Solana Wallet</h2>
-            <p className="info">
-              <a href="" className="author">
-                uv
-              </a>
-              <time>2023-03-27 00:12</time>
-            </p>
-            <p className="summary">
-              You need a wallet to interact with decentralized
-              finance (DeFi) protocols on Solana.
-              The multi-chain xNFT Backpack wallet is
-              one of the most user-friendly and advanced Solana wallets available.
-            </p>
-          </div>
-        </div>
-        <div className="post">
-          <div className="image">
-            <img src="https://blog.hubbleprotocol.io/content/images/size/w1200/2023/03/How-to-set-up-Backpack-backpack-crypto-wallet-xnft-backpack-backpack-solana-wallet-xnft-solana-wallet-install-backpack-nft-wallet-hubble-protocol.png" alt="" />
-          </div>
-          <div className="content">
-            <h2>How to Set Up xNFT Backpack Solana Wallet</h2>
-            <p className="info">
-              <a href="" className="author">
-                uv
-              </a>
-              <time>2023-03-27  00:12</time>
-            </p>
-            <p className="summary">
-              You need a wallet to interact with decentralized
-              finance (DeFi) protocols on Solana.
-              The multi-chain xNFT Backpack wallet is
-              one of the most user-friendly and advanced Solana wallets available.
-            </p>
-          </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<IndexPage />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Route>
 
-        </div>
-      </div>
-    </main >
+    </Routes>
   );
 }
 
