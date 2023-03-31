@@ -33,7 +33,7 @@ export default function Header() {
                 {username && (
                     <>
                         <Link to='/create'>Create Post</Link>
-                        <a onClick={logout}>Logout</a>
+                        <Link onClick={logout}>Logout</Link>
                     </>
                 )}
                 {!username && (

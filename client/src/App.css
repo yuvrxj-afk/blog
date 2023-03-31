@@ -35,13 +35,12 @@ header a {
   font-size: 1.7rem;
   color: rgb(0, 0, 0);
   outline: #333;
-  border-bottom: 2px solid #000000;
-  border-left: 2px solid #000000;
+  border-left: 4px solid #000000;
   padding-left: 5px;
 }
 header nav {
   display: flex;
-  gap: 15px;
+  gap: 15px; 
 }
 nav a {
   font-weight: 500;
@@ -103,6 +102,6 @@ button{
   color: #fff;
 }
 
-form h1{
+form.login ,form.register h1{
   text-align: center;
 }
