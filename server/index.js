@@ -7,6 +7,10 @@ const dotenv = require('dotenv')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
+const multer = require('multer')
+const uploadMiddleware = multer({ dest: 'uploads/' })
+const fs = require('fs')
+const Post = require('./models/postModel.js')
 
 dotenv.config()
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
@@ -37,7 +41,7 @@ app.post('/login', async (req, res) => {
         jwt.sign({ username, id: userDoc.id }, secret, {}, (err, token) => {
             if (err) throw err;
             res.cookie('token', token).json({
-                id:userDoc._id,
+                id: userDoc._id,
                 username,
             })
         })
@@ -50,18 +54,29 @@ app.post('/login', async (req, res) => {
 
 app.get('/profile', (req, res) => {
     const { token } = req.cookies
-    jwt.verify(token, secret, {}, (err,info) => {
+    jwt.verify(token, secret, {}, (err, info) => {
         if (err) throw err;
         res.json(info)
     })
 })
 
-app.post('/logout',(req,res)=>{
-    res.cookie('token','').json('ok')
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json('ok')
 })
 
-app.post('/post',(req,res)=>{
-    
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+    const { originalname, path } = req.file
+    const parts = originalname.split('.')
+    const extension = parts[parts.length - 1]
+    const newPath = path + '.' + extension
+    fs.renameSync(path, newPath)
+
+    const { title, summary, content } = req.body
+    const postDoc = await Post.create({
+        title, summary, content, cover: newPath
+    })
+
+    res.json(postDoc)
 })
 
 app.listen(4000, () => {
